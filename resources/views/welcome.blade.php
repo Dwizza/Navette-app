@@ -6,7 +6,7 @@
         <div>
             <a href="#" class="px-4">Accueil</a>
             <a href="#" class="px-4">Offres</a>
-            <a href="#" class="px-4">Logout</a>
+            <a href="/logout" class="px-4">Logout</a>
         </div>
     </div>
 </nav>
@@ -46,7 +46,7 @@
 <div class="container mx-auto mt-6">
     <h2 class="text-xl font-semibold mb-4">Liste des Offres de Navettes</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach($voyages as $voyage)
+        {{-- @foreach($voyages as $voyage)
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h3 class="text-lg font-semibold mb-2">{{ $voyage->ville_depart }} - {{ $voyage->ville_arrivee }}</h3>
             <p><strong>Heure de Départ:</strong> {{ $voyage->heure_depart }}</p>
@@ -55,7 +55,7 @@
                 <strong>Statut:</strong> {{ $voyage->statut }}
             </p>
         </div>
-        @endforeach
+        @endforeach --}}
     </div>
 </div>
 @endsection
