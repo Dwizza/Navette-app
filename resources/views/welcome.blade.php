@@ -3,10 +3,14 @@
 <nav class="bg-green-600 p-4 text-white">
     <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-2xl font-bold">Plateforme de Navettes</h1>
-        <div>
+        <div class="flex ">
             <a href="#" class="px-4">Accueil</a>
             <a href="#" class="px-4">Offres</a>
-            <a href="/logout" class="px-4">Logout</a>
+            <form action="/logout" method="POST">
+                @csrf
+                <button type="submit" name="submit" class="cursor-pointer">Logout</button>
+            </form>
+            
         </div>
     </div>
 </nav>

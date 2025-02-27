@@ -13,6 +13,7 @@
                 <label class="block text-gray-700">Mot de passe</label>
                 <input type="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
+            <a href="/register" class="text-green-600 ">Register</a>
             <button class="w-full bg-green-600 text-white py-2 rounded-lg" type="submit" name="submit">Se connecter</button>
         </form>
     </div>

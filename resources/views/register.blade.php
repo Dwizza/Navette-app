@@ -26,6 +26,7 @@
                     @endforeach
                 </div>
             </div>
+            <a href="/login" class="text-green-600">Login</a>
             <button type="submit" name="submit" class="w-full bg-green-600 text-white py-2 rounded-lg">S'inscrire</button>
         </form>
     </div>
