@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Annonce;
 use App\Models\Role;
 use App\Models\User;
 use Hash;
@@ -11,21 +12,20 @@ use Illuminate\Support\Facades\Auth;
 class userController extends Controller
 {
     public function welcome(){
-        return view('welcome');
+        $voyages = Annonce::all();
+        return view('welcome', compact('voyages'));
     }
     public function login(){
-        // $user = User::all();
-        // print_r($user);
         return view('login');
     }
     public function authLogin(Request $request){
         echo 'kdhfk';
-        $request->validate([
+        $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt($credentials,true)) {
             return redirect()->intended('/')->with('success', 'Login successful');
         }
 
@@ -38,7 +38,6 @@ class userController extends Controller
         return view('register', ['roles' => $roles]);
     }
     public function store(Request $request){
-        echo 'store';
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -51,6 +50,7 @@ class userController extends Controller
             'password' => $request->password,
             'role_id' => $request->role
         ]);
+        return redirect('/login')->with('success', 'Registration successful');
     }
     public function logout(Request $request)
     {

@@ -15,8 +15,10 @@
       </style>
     @vite('resources/css/app.css')
 </head>
-<body>
-        @yield('content')
+<body class="">
+  
+    @yield('content')
+  
     <script src="script.js"></script>
 </body>
 </html>
