@@ -22,11 +22,16 @@ class userController extends Controller
         echo 'kdhfk';
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required'
         ]);
+        $user = Auth::user();
+        
 
         if (Auth::attempt($credentials,true)) {
-            return redirect()->intended('/')->with('success', 'Login successful');
+            if(auth()->user()->role_id == 1){
+                return redirect()->intended('/client')->with('success', 'Login successful');
+            }
+            return redirect()->intended('/company')->with('success', 'Login successful');
         }
 
         return redirect('/login')->with('error', 'Invalid credentials');

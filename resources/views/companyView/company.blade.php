@@ -2,41 +2,100 @@
 @section('company-content')
 
 <div class="container mx-auto mt-6">
-    <h2 class="text-2xl font-bold mb-6 text-gray-800">Liste des Offres de Navettes</h2>
-    <div class="w-[1000px] m-auto">
-        <table class="w-full bg-white">
-            <thead>
-                <tr>
-                    <th class="py-2">Image</th>
-                    <th class="py-2">Départ</th>
-                    <th class="py-2">Arrivée</th>
-                    <th class="py-2">Heure de Départ</th>
-                    <th class="py-2">Heure d'Arrivée</th>
-                    <th class="py-2">Statut</th>
-                    <th class="py-2">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($voyages as $voyage)
-                <tr class="border-b">
-                    <td class="py-2">
-                        <img src="https://www.tourmag.com/photo/art/grande/76836533-55389305.jpg?v=1700573972" alt="Image de la navette" class="w-24 h-24 object-cover rounded-lg">
-                    </td>
-                    <td class="py-2">{{ $voyage->departure_city }}</td>
-                    <td class="py-2">{{ $voyage->arrival_city }}</td>
-                    <td class="py-2">{{ $voyage->departure_time }}</td>
-                    <td class="py-2">{{ $voyage->arrival_time }}</td>
-                    <td class="py-2 {{ $voyage->status == 'valid' ? 'text-green-600' : 'text-red-600' }}">
-                        <strong>{{ $voyage->status }}</strong>
-                    </td>
-                    <td class="py-2">
-                        <a href="" class="text-blue-500 hover:text-blue-700 font-semibold">Read more</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <h2 class="text-3xl text-center font-bold mb-8 text-gray-900">
+        <i class="fas fa-shuttle-van mr-2"></i>Liste des Offres de Navettes
+    </h2>
+    @if (session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6" role="alert">
+            <strong class="font-bold">Succès!</strong>
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+    <div class="w-full md:w-[90%] lg:w-[80%] xl:w-[70%] m-auto bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="px-6 py-4">
+            <div class="flex justify-between items-center mb-4">
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full leading-normal">
+                    <thead>
+                        <tr class="bg-gray-100">
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Image
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Départ
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Arrivée
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Heure de Départ
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Heure d'Arrivée
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Statut
+                            </th>
+                            <th class="px-5 py-3 border-b-2 border-gray-200 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($voyages as $voyage)
+                            <tr>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0">
+                                            <a href="#" class="block relative">
+                                                <img alt="Navette Image" src="{{$voyage->thumbnail}}" class="mx-auto object-cover rounded-full h-10 w-10"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $voyage->departure_city }}
+                                    </p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $voyage->arrival_city }}
+                                    </p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $voyage->departure_time }}
+                                    </p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        {{ $voyage->arrival_time }}
+                                    </p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <span class="relative inline-block px-3 py-1 font-semibold text-{{ $voyage->status == 'valid' ? 'green' : 'red' }}-900 leading-tight">
+                                        <span aria-hidden class="absolute inset-0 bg-{{ $voyage->status == 'valid' ? 'green' : 'red' }}-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">{{ $voyage->status }}</span>
+                                    </span>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <a href="/formEdit/{{ $voyage->id }}" class="text-blue-500 hover:text-blue-700 mr-2">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a href="/delete/{{$voyage->id}}" onclick="load({{$voyage->id}})" class="text-red-500 hover:text-red-700 delete-btn">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+
 
 @endsection

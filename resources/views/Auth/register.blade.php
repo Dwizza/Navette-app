@@ -3,6 +3,11 @@
 <div class="container mx-auto mt-6 flex justify-center">
     <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-xl font-semibold mb-4">Inscription</h2>
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-600 p-4 rounded-lg mb-4">
+                <strong>Whoops!</strong> There were some problems with your input.
+            </div>
+        @endif
         <form method="POST" action="">
             @csrf
             <div class="mb-4">

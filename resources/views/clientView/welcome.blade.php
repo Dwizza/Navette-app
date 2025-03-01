@@ -1,19 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<nav class="bg-green-600 p-4 text-white">
-    <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold">Plateforme de Navettes</h1>
-        <div class="flex ">
-            <a href="#" class="px-4">Accueil</a>
-            <a href="#" class="px-4">Offres</a>
-            <form action="/logout" method="POST">
-                @csrf
-                <button type="submit" name="submit" class="cursor-pointer">Logout</button>
-            </form>
-            
-        </div>
-    </div>
-</nav>
+
 
 {{-- <div class="container mx-auto mt-6">
     <div class="bg-white p-6 rounded-lg shadow-md">
@@ -47,19 +34,39 @@
         </table>
     </div>
 </div> --}}
-<div class="container mx-auto m-12">
-    <h2 class="text-2xl font-bold mb-6 text-gray-800">Liste des Offres de Navettes</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="container mx-auto py-12">
+    <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">
+        Explorez Nos Destinations Populaires
+    </h2>
+    <div class="mx-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach($voyages as $voyage)
-        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
-            <img src="https://www.tourmag.com/photo/art/grande/76836533-55389305.jpg?v=1700573972" alt="Image de la navette" class="w-full h-48 object-cover rounded-t-lg mb-4">
-            <h3 class="text-xl font-semibold mb-2 text-gray-700">{{ $voyage->departure_city }} - {{ $voyage->arrival_city }}</h3>
-            <p class="text-gray-600 mb-2"><strong>Heure de Départ:</strong> {{ $voyage->departure_time }}</p>
-            <p class="text-gray-600 mb-2"><strong>Heure d'Arrivée:</strong> {{ $voyage->arrival_time }}</p>
-            <p class="{{ $voyage->status == 'valid' ? 'text-green-600' : 'text-red-600' }} font-semibold mb-4">
-                <strong>{{ $voyage->status }}</strong> 
-            </p>
-            <a href="" class="text-blue-500 hover:text-blue-700 font-semibold">Read more</a>
+        <div class="relative group bg-white rounded-3xl shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105">
+            <div class="relative">
+                <img src="{{$voyage->thumbnail}}" alt="Destination" class="w-full h-64 object-cover rounded-t-3xl transition-transform duration-300 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black opacity-20 transition-opacity duration-300 group-hover:opacity-40"></div>
+                <div class="absolute bottom-0 left-0 p-6 w-full">
+                    <h3 class="text-2xl font-bold text-white mb-2 drop-shadow-md">
+                        {{ $voyage->departure_city }} - {{ $voyage->arrival_city }}
+                    </h3>
+                    <p class="text-gray-200 text-sm drop-shadow-md">
+                        Découvrez le confort et la rapidité de nos navettes.
+                    </p>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <p class="text-gray-700 font-semibold">Départ: <span class="text-gray-900">{{ $voyage->departure_time }}</span></p>
+                        <p class="text-gray-700 font-semibold">Arrivée: <span class="text-gray-900">{{ $voyage->arrival_time }}</span></p>
+                    </div>
+                    <span class="{{ $voyage->status == 'valid' ? 'bg-green-200 text-green-700' : 'bg-red-200 text-red-700' }} px-3 py-1 rounded-full text-sm font-medium">
+                        {{ $voyage->status }}
+                    </span>
+                </div>
+                <a href="/detailAnnonce/{{$voyage->id}}" class="inline-block bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold py-3 px-6 rounded-full hover:from-purple-500 hover:to-blue-500 transition-colors duration-300">
+                    En savoir plus
+                </a>
+            </div>
         </div>
         @endforeach
     </div>

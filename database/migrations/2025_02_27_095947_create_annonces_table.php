@@ -23,7 +23,8 @@ return new class extends Migration
             $table->enum('status', ['valid', 'closed'])->default('valid');
             $table->timestamps();
         });
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('create_annonces_table', function (Blueprint $table) {
+            $table->float('price')->nullable();
             $table->string('thumbnail')->nullable();
         });
     }

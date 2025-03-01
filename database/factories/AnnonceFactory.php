@@ -17,7 +17,7 @@ class AnnonceFactory extends Factory
     public function definition(): array
     {
         return [
-            'company_id' => $this->faker->numberBetween(1,2),
+            'company_id' => 4,
             'departure_city' => $this->faker->word(),
             'arrival_city' => $this->faker->word(),
             'departure_time' => $this->faker->time(),
