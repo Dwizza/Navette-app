@@ -15,7 +15,7 @@ class AnnonceController extends Controller
     {
         $user = auth()->user();
         $voyages = Annonce::all()->where('company_id', '=',$user->id);
-        return view('company', compact('voyages'));
+        return view('companyView.company', compact('voyages'));
     }
 
     /**

@@ -13,10 +13,10 @@ class userController extends Controller
 {
     public function welcome(){
         $voyages = Annonce::all();
-        return view('welcome', compact('voyages'));
+        return view('clientView.welcome', compact('voyages'));
     }
     public function login(){
-        return view('login');
+        return view('Auth.login');
     }
     public function authLogin(Request $request){
         echo 'kdhfk';
@@ -35,7 +35,7 @@ class userController extends Controller
 
     public function register(){
         $roles = Role::all();
-        return view('register', ['roles' => $roles]);
+        return view('Auth.register', ['roles' => $roles]);
     }
     public function store(Request $request){
         $request->validate([
