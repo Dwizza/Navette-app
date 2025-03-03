@@ -19,4 +19,12 @@ class Annonce extends Model
         'price',
         'status',
     ];
+    public function company()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class);
+    }
 }

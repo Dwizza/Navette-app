@@ -11,15 +11,14 @@ use Illuminate\Support\Facades\Auth;
 
 class userController extends Controller
 {
-    public function welcome(){
-        $voyages = Annonce::all();
-        return view('clientView.welcome', compact('voyages'));
+    public function index(){
+        // $voyages = Annonce::paginate(6);
+        return view('dashboard.dashboard');
     }
     public function login(){
         return view('Auth.login');
     }
     public function authLogin(Request $request){
-        echo 'kdhfk';
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -31,7 +30,7 @@ class userController extends Controller
             if(auth()->user()->role_id == 1){
                 return redirect()->intended('/client')->with('success', 'Login successful');
             }
-            return redirect()->intended('/company')->with('success', 'Login successful');
+            return redirect()->intended('/')->with('success', 'Login successful');
         }
 
         return redirect('/login')->with('error', 'Invalid credentials');
@@ -39,7 +38,7 @@ class userController extends Controller
     }
 
     public function register(){
-        $roles = Role::all();
+        $roles = Role::where('id', '!=', 3)->get();
         return view('Auth.register', ['roles' => $roles]);
     }
     public function store(Request $request){

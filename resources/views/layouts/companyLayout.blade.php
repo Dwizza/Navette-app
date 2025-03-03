@@ -7,7 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     @vite('resources/css/app.css')
-    {{-- @vite('resources/js/ajax.js') --}}
 </head>
 <body class="bg-gray-50">
     <nav class="bg-indigo-700 p-6 text-white shadow-xl">

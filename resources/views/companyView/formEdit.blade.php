@@ -5,7 +5,6 @@
         <h2 class="text-2xl font-semibold text-gray-800 mb-6">Edit Announcement</h2>
         <form action="{{route('update',$annonce->id)}}" method="POST" class="space-y-4">
             @csrf
-            {{-- @method('PUT') --}}
 
             <div>
                 <label for="departure_city" class="block text-gray-700 text-sm font-bold mb-2">Departure City:</label>
@@ -29,7 +28,7 @@
 
             <div>
                 <label for="Thumbnail" class="block text-gray-700 text-sm font-bold mb-2">Thumbnail URL:</label>
-                <input type="url" id="Thumbnail" name="Thumbnail" value="{{$annonce->Thumbnail}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                <input type="url" id="Thumbnail" name="Thumbnail" value="{{$annonce->thumbnail}}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
             </div>
 
             <div>

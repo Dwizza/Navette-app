@@ -92,16 +92,18 @@ class AnnonceController extends Controller
             'departure_time' => 'required',
             'arrival_time' => 'required',
             'bus_description' => 'required',
-            'thumbnail' => 'required',
+            'Thumbnail' => 'required',
             'price' => 'required',
         ]);
-        Annonce::where('id', '=', $id)->update([
+        
+        $annonce = Annonce::findOrFail($id);
+        $annonce->update([
             'departure_city' => $validatedData['departure_city'],
             'arrival_city' => $validatedData['arrival_city'],
             'departure_time' => $validatedData['departure_time'],
             'arrival_time' => $validatedData['arrival_time'],
             'bus_description' => $validatedData['bus_description'],
-            'thumbnail' => $validatedData['thumbnail'],
+            'Thumbnail' => $validatedData['Thumbnail'],
             'price' => $validatedData['price'],
         ]);
         return redirect('/company')->with('success', 'Annonce updated successfully');

@@ -16,6 +16,7 @@ class companyMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->user()->role_id == 2) {
+            
             return $next($request);
         }
         return redirect('/404')->with('error', 'You are not authorized to access this page');

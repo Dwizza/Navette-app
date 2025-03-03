@@ -84,9 +84,12 @@
                                     <a href="/formEdit/{{ $voyage->id }}" class="text-blue-500 hover:text-blue-700 mr-2">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <a href="/delete/{{$voyage->id}}" onclick="load({{$voyage->id}})" class="text-red-500 hover:text-red-700 delete-btn">
-                                        <i class="fas fa-trash-alt"></i> Delete
-                                    </a>
+                                    <form action="{{ url('api/delete/57') }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="load(event, {{$voyage->id}})">Delete</button>
+                                    </form>
+                                    
                                 </td>
                             </tr>
                         @endforeach
