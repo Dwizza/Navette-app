@@ -31,10 +31,13 @@
                         <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300"><i class="fas fa-shuttle-van mr-2"></i>Navettes</a>
                     </li>
                     <li class="mb-2">
-                        <a href="admin/tags" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300"><i class="fa-solid fa-tags mr-2"></i>Tags</a>
+                        <a href="tags" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300"><i class="fa-solid fa-tags mr-2"></i>Tags</a>
                     </li>
                     <li class="mb-2">
-                        <a href="admin/annonces" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300"><i class="fa-solid fa-bullhorn mr-2"></i>Add Annonces</a>
+                        <a href="annonces" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300"><i class="fa-solid fa-bullhorn mr-2"></i>Add Annonce</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="roles" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300"><i class="fa-solid fa-user-tie mr-2"></i>Add Role</a>
                     </li>
                     <li class="mb-2">
                         <a href="#" class="block py-2 px-4 hover:bg-gray-700 rounded transition duration-300"><i class="fas fa-cogs mr-2"></i>Settings</a>

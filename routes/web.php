@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\userController;
 use App\Http\Middleware\authMiddleware;
@@ -25,6 +26,27 @@ use Illuminate\Support\Facades\Route;
 
 
 route::get('/',[userController::class,'index']);
+route::group(['prefix' => 'admin'],function(){
+    route::get('tags',[TagsController::class,'index']);
+    route::post('tags',[TagsController::class,'store']);
+    route::get('tags/{id}',[TagsController::class,'show']);
+    // route::get('tags/{id}/edit',[TagsController::class,'edit']);
+    route::post('tags/update/{id}',[TagsController::class,'update'])->name('update');
+    route::post('tags/delete/{tags:id}',[TagsController::class,'destroy']);
+    route::get('roles',[RoleController::class,'index']);
+});
+route::group(['prefix'=>'company'],function(){
+    route::get('company',[AnnonceController::class,'index']);
+    route::get('company/create',[AnnonceController::class,'create']);
+    route::post('company',[AnnonceController::class,'store']);
+    route::get('company/{id}',[AnnonceController::class,'show']);
+    route::get('company/edit/{id}',[AnnonceController::class,'edit']);
+    route::post('company/{id}',[AnnonceController::class,'update']);
+    route::delete('company/{id}',[AnnonceController::class,'destroy']);
+});
+route::group(['prefix'=>'client'],function(){
+
+});
 route::get('admin/tags',[TagsController::class,'index']);
 route::post('admin/tags',[TagsController::class,'store']);
 
