@@ -25,8 +25,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-route::get('/',[userController::class,'index']);
 route::group(['prefix' => 'admin'],function(){
+    route::get('/',[userController::class,'index']);
     route::get('tags',[TagsController::class,'index']);
     route::post('tags',[TagsController::class,'store']);
     route::get('tags/{id}',[TagsController::class,'show']);
@@ -36,30 +36,21 @@ route::group(['prefix' => 'admin'],function(){
     route::get('roles',[RoleController::class,'index']);
 });
 route::group(['prefix'=>'company'],function(){
-    route::get('company',[AnnonceController::class,'index']);
-    route::get('company/create',[AnnonceController::class,'create']);
-    route::post('company',[AnnonceController::class,'store']);
-    route::get('company/{id}',[AnnonceController::class,'show']);
-    route::get('company/edit/{id}',[AnnonceController::class,'edit']);
-    route::post('company/{id}',[AnnonceController::class,'update']);
-    route::delete('company/{id}',[AnnonceController::class,'destroy']);
-});
+    route::get('/',[AnnonceController::class,'index']);
+    route::get('/formannonce',[AnnonceController::class,'create']);
+    route::post('/formannonce',[AnnonceController::class,'store'])->name('annonceStorePost');
+    route::get('/{id}',[AnnonceController::class,'show']);
+    route::get('/formEdit/{id}',[AnnonceController::class,'edit'])->name('annonceEditPost');
+    route::post('/formEdit/{id}',[AnnonceController::class,'update'])->name('annonceUpdatePost');
+    route::delete('/delete/{id}',[AnnonceController::class,'destroy']);
+})->middleware('auth');
 route::group(['prefix'=>'client'],function(){
 
 });
-route::get('admin/tags',[TagsController::class,'index']);
-route::post('admin/tags',[TagsController::class,'store']);
 
 route::middleware('myAuth')->group(function () {
-    // Route::get('/', [userController::class, 'welcome']);
+    Route::get('/', [userController::class, 'welcome']);
     Route::get('/detail', [AnnonceController::class, 'show']);
-
-    Route::get('/company', [AnnonceController::class, 'index']);
-    Route::get('/formannonce', [AnnonceController::class, 'create']);
-    Route::post('/formannonce', [AnnonceController::class, 'store']);
-    Route::get('/formEdit/{id}', [AnnonceController::class, 'edit']);
-    Route::post('/formEdit/{id}', [AnnonceController::class, 'update'])->name('update');
-    // Route::get('/delete/{id}', [AnnonceController::class, 'destroy'])->name('delete');
     route::get('/detailAnnonce/{id}',[AnnonceController::class, 'show'])->name('detailAnnonce');
 });
     

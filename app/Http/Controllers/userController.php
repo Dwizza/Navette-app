@@ -23,7 +23,7 @@ class userController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        $user = Auth::user();
+        // $user = Auth::user();
         
 
         if (Auth::attempt($credentials,true)) {

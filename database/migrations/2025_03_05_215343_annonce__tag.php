@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags__annonces', function (Blueprint $table) {
+        Schema::create('annonce_tags', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tag_id');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');

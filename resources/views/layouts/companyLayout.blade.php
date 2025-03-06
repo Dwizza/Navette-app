@@ -16,7 +16,7 @@
             </h1>
             <div class="space-x-6">
                 <a href="/company" class="text-lg hover:text-indigo-200 transition duration-300">Accueil</a>
-                <a href="/formannonce" class="text-lg hover:text-indigo-200 transition duration-300">Ajouter un voyage</a>
+                <a href="company/formannonce" class="text-lg hover:text-indigo-200 transition duration-300">Ajouter un voyage</a>
                 <a href="#" class="text-lg hover:text-indigo-200 transition duration-300">Statistiques</a>
                 <form action="/logout" method="POST" class="inline">
                     @csrf

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Annonce;
 use App\Http\Requests\StoreAnnonceRequest;
 use App\Http\Requests\UpdateAnnonceRequest;
+use App\Models\Tags;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,8 @@ class AnnonceController extends Controller
      */
     public function create()
     {
-        return view('companyView.formannonce');
+        $tags = Tags::all();
+        return view('companyView.formannonce',compact('tags'));
     }
 
     /**
@@ -34,6 +36,7 @@ class AnnonceController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
+
         
         $validatedData = $request->validate([
             'departure_city' => 'required',
@@ -42,6 +45,7 @@ class AnnonceController extends Controller
             'arrival_time' => 'required',
             'bus_description' => 'required',
             'Thumbnail' => 'required',
+            'tag' => 'required',
             'price' => 'required',
         ]);
         $annonces = Annonce::create([
@@ -52,12 +56,15 @@ class AnnonceController extends Controller
             'arrival_time' => $validatedData['arrival_time'],
             'bus_description' => $validatedData['bus_description'],
             'Thumbnail' => $validatedData['Thumbnail'],
+            'tag' => $validatedData['tag'],
             'price' => $validatedData['price'],
             'status' => 'valid',
         ]);
-        $annonces->save();
+        
+        $annonces->tags()->attach($request->tag);
+        
         return redirect('/company')->with('success', 'Annonce created successfully');
-    }
+    }                               
 
     /**
      * Display the specified resource.
@@ -77,8 +84,9 @@ class AnnonceController extends Controller
     {
         
         $annonce = Annonce::find($id);
+        $tags = Tags::all();
         // dd($annonce);
-        return view('companyView.formEdit', compact('annonce'));
+        return view('companyView.formEdit', compact('annonce','tags'));
     }
 
     /**
@@ -86,6 +94,7 @@ class AnnonceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd('dslkjd');
         $validatedData = $request->validate([
             'departure_city' => 'required',
             'arrival_city' => 'required',
@@ -93,6 +102,7 @@ class AnnonceController extends Controller
             'arrival_time' => 'required',
             'bus_description' => 'required',
             'Thumbnail' => 'required',
+            'tag' => 'required',
             'price' => 'required',
         ]);
         
@@ -104,8 +114,12 @@ class AnnonceController extends Controller
             'arrival_time' => $validatedData['arrival_time'],
             'bus_description' => $validatedData['bus_description'],
             'Thumbnail' => $validatedData['Thumbnail'],
+            'tag' => $validatedData['tag'],
             'price' => $validatedData['price'],
         ]);
+        
+        $annonce->tags()->sync($request->tag);
+
         return redirect('/company')->with('success', 'Annonce updated successfully');
     }
 

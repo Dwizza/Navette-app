@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.companyLayout')
+@section('company-content')
 <div class="container mx-auto mt-8 p-6 bg-gray-100 rounded-lg shadow-xl">
     <div class="bg-white rounded-lg overflow-hidden shadow-md">
         

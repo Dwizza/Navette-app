@@ -3,7 +3,7 @@
 <div class="min-h-screen bg-gray-100 py-6 flex items-center justify-center">
     <div class="max-w-md w-full bg-white shadow-md rounded-lg p-8">
         <h2 class="text-2xl font-semibold text-gray-800 mb-6">Create New Announcement</h2>
-        <form action="/formannonce" method="POST" class="space-y-4">
+        <form action="{{route('annonceStorePost')}}" method="POST" class="space-y-4">
             @csrf
 
             <div>
@@ -35,6 +35,14 @@
                 <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Price:</label>
                 <input type="number" id="price" name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
             </div>
+            <div>
+                <label for="tag" class="block text-gray-700 text-sm font-bold mb-2">Tags :</label>
+                @foreach ($tags as $tag)
+                    <input type="checkbox" id="tag" name="tag[]" value="{{$tag->id}}">
+                    <label for="tag">{{$tag->name}}</label><br>
+                @endforeach
+            </div>
+
 
             <div>
                 <label for="bus_description" class="block text-gray-700 text-sm font-bold mb-2">Bus Description:</label>

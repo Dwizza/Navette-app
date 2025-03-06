@@ -14,22 +14,15 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        $routes = Route::getRoutes();
-        $count = 0;
-        foreach ($routes as $route) {
-            $path = $route->uri();
-            $name = ucwords(str_replace(['/', '-'], ' ', $path)); // Convert "/admin/tags" to "Admin Tags"
-            
-            // Vérifier si la permission existe déjà
-            if (!Permission::where('path', $path)->exists()) {
-                Permission::create([
-                    'name' => $name,
-                    'path' => $path,
-                    'is_existed' => 1,
-                ]);
-                // $this->info("Permission added: $path");
-                $count++;
-            }
+
+        $routes = collect(Route::getRoutes())->map(function ($route) {
+            return [
+                'name' => $route->getName(). $route->uri(),
+                'path' => $route->uri(),
+                'is_exested' => 1,
+            ];
+        })->unique('name');
+
+            Permission::insert($routes->toArray());
     }
-}
 }

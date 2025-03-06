@@ -12,7 +12,7 @@
     </form>
 
     <h2 class="text-xl font-semibold mb-3">All Tags</h2>
-    <ul id="tags" class="w-full">
+    <ul id="tags" class="w-full scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 overflow-y-auto" style="max-height: 300px;">
         @foreach($tags as $tag)
             <li class="py-2 px-4 border-b border-gray-200 last:border-none hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between">
             <span class="font-medium">{{ $tag->name }}</span>
@@ -27,19 +27,19 @@
         @endforeach
     </ul>
 
-    <div class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-500 bg-opacity-75 hidden" id="updateForm">
-          <form  action=""  method="POST" class="bg-white p-8 rounded shadow-md w-96">
-                @csrf
-                <h2 class="text-2xl font-semibold mb-4 text-center">Edit Tag</h2>
-                <div class="mb-4">
-                     <label for="updatename" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
-                     <input type="text" name="name" id="updatename" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                </div>
-                <div class="flex justify-center">
-                     <button type="submit" name="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update Tag</button>
-                </div>
-          </form>
-     </div>
+    <div class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 hidden" id="updateForm">
+        <form action="" method="POST" class="bg-white p-6 rounded-lg shadow-lg w-96">
+            @csrf
+            <h2 class="text-2xl font-semibold mb-4 text-center">Edit Tag</h2>
+            <div class="mb-4">
+                <label for="updatename" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                <input type="text" name="name" id="updatename" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" name="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update Tag</button>
+            </div>
+        </form>
+    </div>
 </div>
 <script>   
     function edit(e){

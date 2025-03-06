@@ -81,7 +81,7 @@
                                     </span>
                                 </td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    <a href="/formEdit/{{ $voyage->id }}" class="text-blue-500 hover:text-blue-700 mr-2">
+                                    <a href="{{route('annonceEditPost',$voyage->id)}}" class="text-blue-500 hover:text-blue-700 mr-2">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
                                     <form action="{{ url('api/delete/57') }}" method="POST">
