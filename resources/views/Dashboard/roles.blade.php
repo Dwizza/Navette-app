@@ -2,11 +2,11 @@
 @section('content')
 <div class="container mx-auto px-4 py-8 overflow-auto">
     <h1 class="text-2xl font-bold mb-4">Add Role</h1>
-    <form method="POST" action="">
+    <form method="POST" action="{{ route('roles.store') }}">
         @csrf
         <div class="mb-4">
             <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Role Name:</label>
-            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" required>
+            <input type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="role" required>
         </div>
         <div class="mb-6">
             <label class="block text-gray-700 text-sm font-bold mb-2">Permissions:</label>

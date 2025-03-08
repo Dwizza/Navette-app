@@ -4,30 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login</title>
     @vite('resources/css/app.css')
 </head>
-<body class="h-screen flex items-center justify-center bg-gray-100">
-    <div class="container mx-auto mt-6 flex justify-center">
-        <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-md">
-            <h2 class="text-xl font-semibold mb-4">Connexion</h2>
+<body class="bg-gray-800 h-screen flex items-center justify-center font-sans">
+    <div class="container flex justify-center items-center">
+        <div class="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Login</h2>
             @if ($errors->any())
-                <div class="bg-red-100 text-red-600 p-4 rounded-lg mb-4">
-                    <strong>Whoops!</strong> There were some problems with your input.
-                </div>
+            <div class="bg-red-200 text-red-800 p-3 rounded mb-4">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div>
             @endif
-            <form method="POST">
-                @csrf
-                <div class="mb-4">
-                    <label class="block text-gray-700">Email</label>
-                    <input type="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <form method="POST" class="space-y-4">
+            @csrf
+            <div>
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-white placeholder-gray-400">
                 </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700">Mot de passe</label>
-                    <input type="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <div>
+                    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required class="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-white text-gray-700 placeholder-gray-400">
                 </div>
-                <a href="/register" class="text-green-600 ">Register</a>
-                <button class="w-full bg-green-600 text-white py-2 rounded-lg" type="submit" name="submit">Se connecter</button>
+                <button type="submit" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
+                    Sign In
+                </button>
+                <div class="text-center mt-4">
+                    <a href="/register" class="inline-block text-sm font-bold text-gray-700 hover:text-gray-900">
+                        Register
+                    </a>
+                </div>
             </form>
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -30,6 +31,18 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         
+        $validate = $request->validate([
+            'role' => 'required',
+            'permissions' => 'required',
+        ]);
+        // dd('$validate');
+        $Roles = Role::create([
+            'role' => $validate['role'],
+            'permissions' => $validate['permissions'],
+        ]);
+        $Roles->permissions()->attach($validate['permissions']);
+        return redirect()->back()->with('success', 'Role created successfully');
+
     }
 
     /**

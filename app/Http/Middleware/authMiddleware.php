@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use App\Models\User;
 use Auth;
 use Closure;
@@ -17,9 +18,13 @@ class authMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::check()){
-            return redirect('/login');
+        $uri = $request->path();
+        $user = Auth::user(); // L-user li authentifié
+        $permissions = $user->role->permission->pluck('path'); 
+        // dd($permissions);
+        if(Auth::check() && $permissions->contains($uri)){
+            return $next($request);
         }
-        return $next($request);
+        return redirect('/404');
     }
 }

@@ -84,10 +84,10 @@
                                     <a href="{{route('annonceEditPost',$voyage->id)}}" class="text-blue-500 hover:text-blue-700 mr-2">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <form action="{{ url('api/delete/57') }}" method="POST">
+                                    <form action="company/delete/{{$voyage->id}}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="load(event, {{$voyage->id}})">Delete</button>
+                                        <button type="submit" >Delete</button>
                                     </form>
                                     
                                 </td>

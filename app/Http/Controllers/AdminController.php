@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tags_Annonces;
-use App\Http\Requests\StoreTags_AnnoncesRequest;
-use App\Http\Requests\UpdateTags_AnnoncesRequest;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Http\Request;
 
-class TagsAnnoncesController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $users = User::with('role')->get();
+        $roles = Role::all();
+        // dd($users);
+        return view('dashboard.usersControl', compact('users','roles'));
     }
 
     /**
@@ -27,15 +30,15 @@ class TagsAnnoncesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTags_AnnoncesRequest $request)
+    public function store(Request $request)
     {
-        //
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Tags_Annonces $tags_Annonces)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +46,7 @@ class TagsAnnoncesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tags_Annonces $tags_Annonces)
+    public function edit(string $id)
     {
         //
     }
@@ -51,15 +54,15 @@ class TagsAnnoncesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTags_AnnoncesRequest $request, Tags_Annonces $tags_Annonces)
+    public function update(Request $request, string $id)
     {
-        //
+       //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tags_Annonces $tags_Annonces)
+    public function destroy(string $id)
     {
         //
     }

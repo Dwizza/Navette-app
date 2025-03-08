@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Auth;
 
 class userController extends Controller
 {
+    public function welcome(){
+        $voyages = Annonce::paginate(6);
+        return view('clientView.welcome', ['voyages' => $voyages]);
+    }
     public function index(){
         // $voyages = Annonce::paginate(6);
         return view('dashboard.dashboard');
@@ -46,13 +50,13 @@ class userController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:4',
-            'role' => 'required'
+            // 'role' => 'required'
         ]);
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'role_id' => $request->role
+            // 'role_id' => $request->role
         ]);
         return redirect('/login')->with('success', 'Registration successful');
     }
@@ -62,5 +66,12 @@ class userController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/login')->with('success', 'Successfully logged out');
+    }
+    public function editRole(Request $request, $id){
+        $user = User::find($id);
+        // dd($request->role);
+        $user->role_id = $request->role;
+        $user->save();
+        return redirect()->back()->with('success', 'Role updated successfully');
     }
 }
